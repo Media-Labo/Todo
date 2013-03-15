@@ -44,6 +44,7 @@ public class TodoEntity {
      * @param createDate 作成日
      * @param startDate 開始日
      * @param endDate 終了日
+     * @throws IllegalArgumentException 設定不可の値が渡された場合
      */
     private TodoEntity(
         int        id,
@@ -55,6 +56,111 @@ public class TodoEntity {
         Date       startDate,
         Date       endDate )
     {
+        try {
+            this.setId(id);
+            this.setSummary(summary);
+            this.setDetail(detail);
+            this.setStatus(status);
+            this.setWeight(weight);
+            this.setCreateDate(createDate);
+            this.setStartDate(startDate);
+            this.setEndDate(endDate);
+        }
+        catch( Exception e ) {
+            throw new IllegalArgumentException( "引数が不正", e );
+        }
+    }
+
+    /**
+     * @param id セットする id
+     * @throws IllegalArgumentException 引数が負の場合
+     */
+    private void setId(int id) {
+        if( id < 0 ) {
+            throw new IllegalArgumentException( "idは負不可[" + id + "]" );
+        }
+        this.id = id;
+    }
+
+    /**
+     * @param summary セットする summary
+     * @throws NullPointerException 引数がnullの場合
+     * @throws IllegalArgumentException 引数が空文字の場合
+     */
+    private void setSummary(String summary) {
+        if( summary == null ) {
+            throw new NullPointerException( "summaryはnull不可" );
+        }
+        if( summary.isEmpty() ) {
+            throw new IllegalArgumentException( "summaryは空文字不可" );
+        }
+        this.summary = summary;
+    }
+
+    /**
+     * @param detail セットする detail
+     * @throws NullPointerException 引数がnullの場合
+     */
+    private void setDetail(String detail) {
+        if( summary == null ) {
+            throw new NullPointerException( "detailはnull不可" );
+        }
+        this.detail = detail;
+    }
+
+    /**
+     * @param status セットする status
+     * @throws NullPointerException 引数がnullの場合
+     */
+    private void setStatus(TodoStatus status) {
+        if( status == null ) {
+            throw new NullPointerException( "statusはnull不可" );
+        }
+        this.status = status;
+    }
+
+    /**
+     * @param weight セットする weight
+     * @throws IllegalArgumentException 引数が負の場合
+     */
+    private void setWeight(int weight) {
+        if( weight < 0 ) {
+            throw new IllegalArgumentException( "weightは負不可" );
+        }
+        this.weight = weight;
+    }
+
+    /**
+     * @param createDate セットする createDate
+     * @throws NullPointerException 引数がnullの場合
+     */
+    private void setCreateDate(Date createDate) {
+        if( createDate == null ) {
+            throw new NullPointerException( "createDateはnull不可" );
+        }
+        this.createDate = (Date)createDate.clone();
+    }
+
+    /**
+     * @param startDate セットする startDate
+     * @throws NullPointerException 引数がnullの場合
+     */
+    private void setStartDate(Date startDate) {
+        if( startDate == null ) {
+            throw new NullPointerException( "startDateはnull不可" );
+        }
+        this.startDate = (Date)startDate.clone();
+    }
+
+    /**
+     * @param endDate セットする endDate
+     * @throws NullPointerException 引数がnullの場合
+     */
+    private void setEndDate(Date endDate) {
+        if( endDate == null ) {
+            throw new NullPointerException( "endDateはnull不可" );
+        }
+        this.endDate = (Date)endDate.clone();
     }
 
     /**
@@ -204,7 +310,8 @@ public class TodoEntity {
         
         /**
          * Todo情報を生成します。
-         * @return Todo情報
+         * @return 生成したTodo情報
+         * @throws IllegalArgumentException 生成に失敗した場合
          */
         public TodoEntity build() {
             return new TodoEntity(
