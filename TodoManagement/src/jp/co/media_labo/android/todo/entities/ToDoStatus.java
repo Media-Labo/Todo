@@ -8,7 +8,7 @@ package jp.co.media_labo.android.todo.entities;
  * @author tanabe
  *
  */
-public enum ToDoStatus {
+public enum TodoStatus {
 	CREATED,	// 作成直後で未着手
 	COMPLETED,	// 終了
 	DELETED,	// 削除
