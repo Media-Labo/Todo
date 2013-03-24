@@ -27,7 +27,7 @@ public class TodoManager {
 		return true;
 	}
 	
-	//ƒtƒ@ƒCƒ‹‚æ‚è“Ç‚İ‚İ
+	//èª­ã¿è¾¼ã¿å‡¦ç†
 	public void load (Context context){
 		TodoFileUtil fileUtil=new TodoFileUtil();
 		todoData = fileUtil.load(context);		
