@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="jp.co.media_labo.android.todo.EditActivity"
+            android:name="jp.co.media_labo.android.todo.activities.EditActivity"
             android:label="@string/title_activity_edit" >
         </activity>
     </application>

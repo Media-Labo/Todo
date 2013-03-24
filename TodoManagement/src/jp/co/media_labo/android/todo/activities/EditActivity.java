@@ -1,5 +1,8 @@
-package jp.co.media_labo.android.todo;
+package jp.co.media_labo.android.todo.activities;
 
+import jp.co.media_labo.android.todo.R;
+import jp.co.media_labo.android.todo.R.layout;
+import jp.co.media_labo.android.todo.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
