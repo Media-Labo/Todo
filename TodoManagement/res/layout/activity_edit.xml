@@ -21,7 +21,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/editTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
@@ -43,7 +43,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <SeekBar
-            android:id="@+id/seekBar1"
+            android:id="@+id/seekTerm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
@@ -61,7 +61,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RatingBar
-            android:id="@+id/ratingBar1"
+            android:id="@+id/priorityBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
@@ -69,7 +69,7 @@
             android:layout_marginTop="0dp" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/registButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
@@ -88,7 +88,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <DatePicker
-            android:id="@+id/datePicker1"
+            android:id="@+id/startDatePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
@@ -106,7 +106,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <DatePicker
-            android:id="@+id/datePicker2"
+            android:id="@+id/endDatePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
@@ -135,7 +135,7 @@
                 android:orientation="vertical" >
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/editDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
