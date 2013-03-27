@@ -1,5 +1,6 @@
 package jp.co.media_labo.android.todo.util;
 
+import java.util.Collection;
 import java.util.Map;
 
 import jp.co.media_labo.android.todo.entities.TodoEntity;
@@ -44,5 +45,9 @@ public class TodoEntityContainer {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public Collection<TodoEntity> getValues(){
+		return entities.values();
 	}
 }

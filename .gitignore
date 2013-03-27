@@ -23,3 +23,6 @@ local.properties
 
 # Astah backup files
 *.bak
+
+# Mac data file
+.DS_Store
