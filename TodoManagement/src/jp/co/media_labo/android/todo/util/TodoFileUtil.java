@@ -7,20 +7,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.Collection;
 import java.util.Date;
 
 import jp.co.media_labo.android.todo.entities.TodoEntity;
-import jp.co.media_labo.android.todo.entities.TodoStatus;
 import jp.co.media_labo.android.todo.entities.TodoEntity.TodoEntityBuilder;
 
 import android.content.Context;
 
 public class TodoFileUtil {
 
-	private final String TODO_FILE_NAME="LOCAL_DATA";
+	private static final String TODO_FILE_NAME="LOCAL_DATA";
 	
-	public void save (TodoEntityContainer entities, OutputStream stream){
+	public static void save (TodoEntityContainer entities, OutputStream stream){
 		for (TodoEntity enty: entities.getValues()){
 			String strData = enty.getId() + "," + enty.getSummary() + "," + enty.getDetail() + "," + enty.getStatus() + "," 
 							+ enty.getWeight() + "," + enty.getCreateDate() + "," + enty.getStartDate() + "," + enty.getEndDate();
@@ -32,7 +30,7 @@ public class TodoFileUtil {
 		}
 	}
 		
-	public void save (TodoEntityContainer entities, Context context){
+	public static void save (TodoEntityContainer entities, Context context){
 		FileOutputStream fs=null;
 		try{
 			fs = context.openFileOutput(TODO_FILE_NAME, Context.MODE_PRIVATE);
@@ -50,7 +48,7 @@ public class TodoFileUtil {
 		}
 	}
 	
-	public TodoEntityContainer load (InputStream stream){
+	public static TodoEntityContainer load (InputStream stream){
 		TodoEntityContainer loadEntityConteine = new TodoEntityContainer();
 		BufferedReader reader=null;
 		try{
@@ -72,6 +70,7 @@ public class TodoFileUtil {
 		}catch (Exception e){
 			e.printStackTrace();
 		}finally{
+			
 			if(reader != null)
 				try {
 					reader.close();
@@ -83,7 +82,7 @@ public class TodoFileUtil {
 		return loadEntityConteine;
 	}
 	
-	public TodoEntityContainer load (Context context){
+	public static TodoEntityContainer load (Context context){
 		TodoEntityContainer loadEntities = null;
 		FileInputStream fs = null;
 		try{

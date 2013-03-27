@@ -8,7 +8,7 @@ public class TodoManager {
 	private TodoEntityContainer todoData;
 	
 	public TodoManager(Context context){
-		
+		todoData = new  TodoEntityContainer();
 	}
 
 	public Boolean create(TodoEntity entity){
@@ -28,15 +28,17 @@ public class TodoManager {
 		return todoData.remove(id);
 	}
 	
-	//読み込み処理
 	public void load (Context context){
-		TodoFileUtil fileUtil=new TodoFileUtil();
-		todoData = fileUtil.load(context);		
+		todoData = TodoFileUtil.load(context);		
 	}
 	
 	public void save (Context context){
-		TodoFileUtil fileUtil=new TodoFileUtil();
-		fileUtil.save(todoData, context);		
+		TodoFileUtil.save(todoData, context);		
 	}
+	
+	public int GetMaxId(){
+		return todoData.GetMaxId();
+	}
+	
 	
 }
