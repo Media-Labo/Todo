@@ -62,7 +62,7 @@ public class EditActivity extends Activity {
         });
         
         // シークバーに値を設定
-        SeekBar termBar = (SeekBar)this.findViewById( R.id.seekTerm );
+        SeekBar termBar = (SeekBar)this.findViewById( R.id.termBar );
         termBar.setMax( TERM_MAX );
         termBar.setOnSeekBarChangeListener( new OnSeekBarChangeListener() {
 			
@@ -81,13 +81,13 @@ public class EditActivity extends Activity {
 					boolean fromUser) {
 				// TODO 自動生成されたメソッド・スタブ
 				int term = EditActivity.this.getInputtedTerm();
-				TextView label = (TextView)EditActivity.this.findViewById( R.id.textView2 );
+				TextView label = (TextView)EditActivity.this.findViewById( R.id.termLabel );
 				label.setText( "詳細(あと" + term + "日)");
 			}
 		});
         
         // 優先度を設定
-        RatingBar rateBar = (RatingBar)this.findViewById( R.id.priorityBar );
+        RatingBar rateBar = (RatingBar)this.findViewById( R.id.weightBar );
         rateBar.setNumStars( NUM_OF_STAR );
         rateBar.setOnRatingBarChangeListener( new OnRatingBarChangeListener() {
 
@@ -95,7 +95,7 @@ public class EditActivity extends Activity {
 			public void onRatingChanged(RatingBar arg0, float arg1, boolean arg2) {
 				// TODO 自動生成されたメソッド・スタブ
 				int rate = EditActivity.this.getInputtedPriority();
-				TextView label = (TextView)EditActivity.this.findViewById( R.id.textView3 );
+				TextView label = (TextView)EditActivity.this.findViewById( R.id.weightLabel );
 				label.setText( "優先度(" + rate + ")");
 				
 			}
@@ -153,7 +153,7 @@ public class EditActivity extends Activity {
      * @return タイトル
      */
     private String getInputtedTitle() {
-    	EditText title = (EditText)this.findViewById( R.id.editTitle );
+    	EditText title = (EditText)this.findViewById( R.id.summaryEditor );
     	return title.toString();
     }
     
@@ -162,7 +162,7 @@ public class EditActivity extends Activity {
      * @return 期間(日)
      */
     private int getInputtedTerm() {
-    	SeekBar bar = (SeekBar)this.findViewById( R.id.seekTerm );
+    	SeekBar bar = (SeekBar)this.findViewById( R.id.termBar );
     	return bar.getProgress();
     }
     
@@ -171,7 +171,7 @@ public class EditActivity extends Activity {
      * @return 優先度
      */
     private int getInputtedPriority() {
-    	RatingBar bar = (RatingBar)this.findViewById( R.id.priorityBar );
+    	RatingBar bar = (RatingBar)this.findViewById( R.id.weightBar );
     	return Math.round( bar.getRating() * RATE_PER_STAR );
     }
     
@@ -206,7 +206,7 @@ public class EditActivity extends Activity {
      * @return 詳細
      */
     private String getInputtedDetail() {
-    	EditText edit = (EditText)this.findViewById( R.id.editDetail );
+    	EditText edit = (EditText)this.findViewById( R.id.detailEditor );
     	return edit.getText().toString();
     }
 }
