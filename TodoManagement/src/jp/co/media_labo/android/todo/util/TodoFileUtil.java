@@ -11,6 +11,7 @@ import java.util.Date;
 
 import jp.co.media_labo.android.todo.entities.TodoEntity;
 import jp.co.media_labo.android.todo.entities.TodoEntity.TodoEntityBuilder;
+import jp.co.media_labo.android.todo.entities.TodoStatus;
 
 import android.content.Context;
 
@@ -20,7 +21,7 @@ public class TodoFileUtil {
 	
 	public static void save (TodoEntityContainer entities, OutputStream stream){
 		for (TodoEntity enty: entities.getValues()){
-			String strData = enty.getId() + "," + enty.getSummary() + "," + enty.getDetail() + "," + enty.getStatus() + "," 
+			String strData = enty.getId() + "," + enty.getSummary() + "," + enty.getDetail() + "," + enty.getStatus().toValue() + "," 
 							+ enty.getWeight() + "," + enty.getCreateDate() + "," + enty.getStartDate() + "," + enty.getEndDate();
 			try {
 				stream.write(strData.getBytes());
@@ -60,8 +61,7 @@ public class TodoFileUtil {
 				todoEntyBuilder.setId(Integer.valueOf(strTodoEnty[0]) );
 				todoEntyBuilder.setSummary(strTodoEnty[1]);
 				todoEntyBuilder.setDetail(strTodoEnty[2]);
-				// TODO enum
-				//todoEntyBuilder.setStatus(strTodoEnty[3]);
+				todoEntyBuilder.setStatus(TodoStatus.valueOf(strTodoEnty[3]));
 				todoEntyBuilder.setWeight(Integer.valueOf(strTodoEnty[4]));
 				todoEntyBuilder.setCreateDate(new Date(Date.parse(strTodoEnty[5])));
 				todoEntyBuilder.setStartDate(new Date(Date.parse(strTodoEnty[6])));
