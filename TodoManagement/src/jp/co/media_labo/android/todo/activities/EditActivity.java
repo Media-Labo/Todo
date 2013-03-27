@@ -51,8 +51,8 @@ public class EditActivity extends Activity {
         setContentView(R.layout.activity_edit);
         
         // 登録ボタンにイベントリスナーを設定
-        Button btn = (Button)this.findViewById( R.id.registButton );
-        btn.setOnClickListener( new OnClickListener() {
+        Button registButton = (Button)this.findViewById( R.id.registButton );
+        registButton.setOnClickListener( new OnClickListener() {
         
         	@Override
         	public void onClick(View v) {
@@ -101,6 +101,7 @@ public class EditActivity extends Activity {
 			}
         	
         });
+        
     }
 
     @Override
