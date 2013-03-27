@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
@@ -82,7 +83,9 @@ public class EditActivity extends Activity {
 				// TODO 自動生成されたメソッド・スタブ
 				int term = EditActivity.this.getInputtedTerm();
 				TextView label = (TextView)EditActivity.this.findViewById( R.id.termLabel );
-				label.setText( "詳細(あと" + term + "日)");
+				label.setText( "期間(あと" + term + "日)");
+				
+				EditActivity.this.updateEndDate();
 			}
 		});
         
@@ -102,6 +105,19 @@ public class EditActivity extends Activity {
         	
         });
         
+        Calendar nowCal = Calendar.getInstance();
+        DatePicker startDatePicker = (DatePicker)this.findViewById( R.id.startDatePicker );
+        startDatePicker.init( nowCal.get( Calendar.YEAR ),
+        					  nowCal.get( Calendar.MONTH ),
+        					  nowCal.get( Calendar.DAY_OF_MONTH ),
+        					  new OnDateChangedListener() {
+								
+								@Override
+								public void onDateChanged(DatePicker view, int year, int monthOfYear,
+										int dayOfMonth) {
+									EditActivity.this.updateEndDate();
+								}
+							});
     }
 
     @Override
@@ -125,9 +141,7 @@ public class EditActivity extends Activity {
 	    	TodoEntityBuilder builder = new TodoEntityBuilder();
 	    	
 	    	// 入力内容を詰め込む
-	    	// TODO [修正]IDを計算しないといけない
-	    	builder.setId( 1 );
-	    	
+	    	builder.setId( this.manager.GetMaxId() + 1 );
 	    	builder.setSummary( this.getInputtedTitle() );
 	    	builder.setDetail( this.getInputtedDetail() );
 	    	builder.setStatus( TodoStatus.CREATED );
@@ -180,26 +194,30 @@ public class EditActivity extends Activity {
      * 入力された開始日を取得します。
      * @return 開始日
      */
-    private Date getInputtedStartDate() {
+    private Calendar getInputtedStartDate() {
     	DatePicker picker = (DatePicker)this.findViewById( R.id.startDatePicker );
     	int year = picker.getYear();
     	int month = picker.getMonth();
     	int day = picker.getDayOfMonth();
     	
-    	return new Date( year, month, day );
+    	Calendar cal = Calendar.getInstance();
+    	cal.set( year, month, day );
+    	return cal;
     }
     
     /**
      * 入力された終了日を取得します。
      * @return 終了日
      */
-    private Date getInputtedEndDate() {
+    private Calendar getInputtedEndDate() {
     	DatePicker picker = (DatePicker)this.findViewById( R.id.endDatePicker );
     	int year = picker.getYear();
     	int month = picker.getMonth();
     	int day = picker.getDayOfMonth();
     	
-    	return new Date( year, month, day );
+    	Calendar cal = Calendar.getInstance();
+    	cal.set( year, month, day );
+    	return cal;
     }
     
     /**
@@ -209,5 +227,20 @@ public class EditActivity extends Activity {
     private String getInputtedDetail() {
     	EditText edit = (EditText)this.findViewById( R.id.detailEditor );
     	return edit.getText().toString();
+    }
+    
+    /**
+     * 終了日を更新します。
+     */
+    private void updateEndDate() {
+    	int term = this.getInputtedTerm();
+		Calendar startDate = EditActivity.this.getInputtedStartDate();
+		startDate.add(Calendar.DATE, term);
+		DatePicker endDatePicker = (DatePicker)EditActivity.this.findViewById( R.id.endDatePicker );
+		endDatePicker.init( startDate.get(Calendar.YEAR ),
+							startDate.get(Calendar.MONTH ),
+							startDate.get(Calendar.DAY_OF_MONTH ),
+							null );
+
     }
 }
