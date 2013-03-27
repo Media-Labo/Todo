@@ -50,7 +50,7 @@ public class TodoFileUtil {
 	}
 	
 	public static TodoEntityContainer load (InputStream stream){
-		TodoEntityContainer loadEntityConteine = new TodoEntityContainer();
+		TodoEntityContainer loadEntityConteiner = new TodoEntityContainer();
 		BufferedReader reader=null;
 		try{
 			TodoEntityBuilder todoEntyBuilder = new TodoEntityBuilder();
@@ -66,6 +66,7 @@ public class TodoFileUtil {
 				todoEntyBuilder.setCreateDate(new Date(Date.parse(strTodoEnty[5])));
 				todoEntyBuilder.setStartDate(new Date(Date.parse(strTodoEnty[6])));
 				todoEntyBuilder.setEndDate(new Date(Date.parse(strTodoEnty[7])));
+				loadEntityConteiner.add(todoEntyBuilder.build());
 			}
 		}catch (Exception e){
 			e.printStackTrace();
@@ -79,7 +80,7 @@ public class TodoFileUtil {
 				}
 		}
 		
-		return loadEntityConteine;
+		return loadEntityConteiner;
 	}
 	
 	public static TodoEntityContainer load (Context context){
