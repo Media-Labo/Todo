@@ -12,19 +12,20 @@ public class TodoManager {
 	}
 
 	public Boolean create(TodoEntity entity){
-		return true;		
+		return todoData.add(entity);		
 	}
 	
 	public TodoEntity read(int id) {
-		return null;
+		return todoData.get(id);
 	}
 	
 	public Boolean update(TodoEntity entity){
-		return true;
+		todoData.remove(entity.getId());
+		return todoData.add(entity);
 	}
 	
 	public Boolean delete (int id){
-		return true;
+		return todoData.remove(id);
 	}
 	
 	//読み込み処理
@@ -34,7 +35,8 @@ public class TodoManager {
 	}
 	
 	public void save (Context context){
-		
+		TodoFileUtil fileUtil=new TodoFileUtil();
+		fileUtil.save(todoData, context);		
 	}
 	
 }
