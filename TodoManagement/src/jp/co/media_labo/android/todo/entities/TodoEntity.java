@@ -102,7 +102,7 @@ public class TodoEntity {
      * @throws NullPointerException 引数がnullの場合
      */
     private void setDetail(String detail) {
-        if( summary == null ) {
+        if( detail == null ) {
             throw new NullPointerException( "detailはnull不可" );
         }
         this.detail = detail;
