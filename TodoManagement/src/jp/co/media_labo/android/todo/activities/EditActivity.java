@@ -151,7 +151,7 @@ public class EditActivity extends Activity {
 	    	builder.setEndDate( endDate.getTime() );
 	    	
 	    	this.manager.create( builder.build() );
-	    	
+	    	this.manager.save(this);
 	    	Toast.makeText( this, "登録しました", Toast.LENGTH_LONG ).show();
 	    	return true;
     	}
