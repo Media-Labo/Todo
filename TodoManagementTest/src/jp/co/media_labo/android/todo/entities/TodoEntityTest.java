@@ -15,6 +15,10 @@ public class TodoEntityTest extends TestCase {
 		this.builder = this.createDefaultBuilder();
 	}
 	
+	/////////////////////
+	// idã®ãƒ†ã‚¹ãƒˆ
+	/////////////////////
+	
 	public void testIdIsNegative() {
 		this.builder.setId(-1);
 		this.expectIllegalArgumentException( this.builder );
@@ -32,6 +36,10 @@ public class TodoEntityTest extends TestCase {
 		assertEquals(set, this.builder.build().getId());
 	}
 
+	/////////////////////
+	// summaryã®ãƒ†ã‚¹ãƒˆ
+	/////////////////////
+	
 	public void testSummaryIsNull() {
 		this.builder.setSummary(null);
 		this.expectIllegalArgumentException(this.builder);
@@ -48,6 +56,10 @@ public class TodoEntityTest extends TestCase {
 		assertEquals(set, this.builder.build().getSummary());
 	}
 
+	/////////////////////
+	// detailã®ãƒ†ã‚¹ãƒˆ
+	/////////////////////
+	
 	public void testDetailIsNull() {
 		this.builder.setDetail(null);
 		this.expectIllegalArgumentException(this.builder);
@@ -59,20 +71,116 @@ public class TodoEntityTest extends TestCase {
 		assertEquals(set, this.builder.build().getDetail());
 	}
 	
+	public void testStatusIsNull() {
+		TodoStatus set = null;
+		this.builder.setStatus(set);
+		this.expectIllegalArgumentException(this.builder);
+	}
 	
-	// TODO status‚ÌƒeƒXƒg
-	// TODO weight‚ÌƒeƒXƒg
-	// TODO createDate‚ÌƒeƒXƒg
-	// TODO startDate‚ÌƒeƒXƒg
-	// TODO endDate‚ÌƒeƒXƒg
+	/////////////////////
+	// statusã®ãƒ†ã‚¹ãƒˆ
+	/////////////////////
 	
+	public void testStatusIsNotNull() {
+		TodoStatus set = TodoStatus.COMPLETED;
+		this.builder.setStatus(set);
+		assertEquals(set, this.builder.build().getStatus());
+	}
+	
+	/////////////////////
+	// weightã®ãƒ†ã‚¹ãƒˆ
+	/////////////////////
+	
+	public void testWeightIsNegative() {
+		int set = -1;
+		this.builder.setWeight(set);
+		this.expectIllegalArgumentException(this.builder);
+	}
+	
+	public void testWeightIs0() {
+		int set = 0;
+		this.builder.setWeight(set);
+		assertEquals(set, this.builder.build().getWeight());
+	}
+	
+	public void testWeightIsPositive() {
+		int set = 1;
+		this.builder.setWeight(set);
+		assertEquals(set, this.builder.build().getWeight());
+	}
+	
+	/////////////////////
+	// createDateã®ãƒ†ã‚¹ãƒˆ
+	/////////////////////
+	
+	public void testCreateDateIsNull() {
+		Date set = null;
+		this.builder.setCreateDate(set);
+		this.expectIllegalArgumentException(this.builder);
+	}
+	
+	public void testCreateDateIsNotNull() {
+		Date set = new Date();
+		this.builder.setCreateDate(set);
+		assertTrue( set.equals(this.builder.build().getCreateDate()));
+	}
+	
+	public void testCreateDateIsNotSameObj() {
+		Date set = new Date();
+		this.builder.setCreateDate(set);
+		assertFalse( set == this.builder.build().getCreateDate() );
+	}
+	
+	/////////////////////
+	// startDateã®ãƒ†ã‚¹ãƒˆ
+	/////////////////////
+	
+	public void testStartDateIsNull() {
+		Date set = null;
+		this.builder.setStartDate(set);
+		this.expectIllegalArgumentException(this.builder);
+	}
+	
+	public void testStartDateIsNotNull() {
+		Date set = new Date();
+		this.builder.setStartDate(set);
+		assertTrue(set.equals(this.builder.build().getStartDate()));
+	}
+	
+	public void testStartDateIsNotSameObj() {
+		Date set = new Date();
+		this.builder.setStartDate(set);
+		assertFalse(set==this.builder.build().getStartDate());
+	}
+	
+	/////////////////////
+	// endDateã®ãƒ†ã‚¹ãƒˆ
+	/////////////////////
+	
+	public void testEndDateIsNull() {
+		Date set = null;
+		this.builder.setEndDate(set);
+		this.expectIllegalArgumentException(this.builder);
+	}
+	
+	public void testEndDateIsNotNull() {
+		Date set = new Date();
+		this.builder.setEndDate(set);
+		assertTrue(set.equals(this.builder.build().getEndDate()));
+	}
+	
+	public void testEndDateIsNotSameObj() {
+		Date set = new Date();
+		this.builder.setEndDate(set);
+		assertFalse(set==this.builder.build().getEndDate());
+	}
 	
 	////////////////////////////////////
-	// ˆÈ‰º‚ÍƒeƒXƒg‚Åg—p‚·‚é‚½‚ß‚Ì•Ö—˜ƒƒ\ƒbƒh
+	// ä»¥ä¸‹ã¯ãƒ†ã‚¹ãƒˆã§ä½¿ç”¨ã™ã‚‹ãŸã‚ã®ä¾¿åˆ©ãƒ¡ã‚½ãƒƒãƒ‰
 	////////////////////////////////////
 	
 	/**
-	 * ƒGƒ‰[‚ªo‚È‚¢’l‚ğƒZƒbƒg‚µ‚½TodoEntityBuilder‚ğ¶¬‚µ‚Ü‚·B
+	 * ã‚¨ãƒ©ãƒ¼ãŒå‡ºãªã„å€¤ã‚’ã‚»ãƒƒãƒˆã—ãŸTodoEntityBuilderã‚’ç”Ÿæˆã—ã¾ã™ã€‚
 	 */
 	private TodoEntityBuilder createDefaultBuilder() {
 		TodoEntityBuilder builder = new TodoEntityBuilder();
@@ -90,13 +198,13 @@ public class TodoEntityTest extends TestCase {
 	}
 	
 	/**
-	 * TodoEntity‚Ì¶¬‚ÉIllegalArgumentException‚ª”­¶‚·‚é‚±‚Æ‚ğŠm”F‚µ‚Ü‚·B
-	 * @param builder ‘g‚İ—§‚Ä‚ğs‚¤TodoEntityBuilder
+	 * TodoEntityã®ç”Ÿæˆæ™‚ã«IllegalArgumentExceptionãŒç™ºç”Ÿã™ã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¾ã™ã€‚
+	 * @param builder çµ„ã¿ç«‹ã¦ã‚’è¡Œã†TodoEntityBuilder
 	 */
 	private void expectIllegalArgumentException( TodoEntityBuilder builder ) {
 		try {
 			builder.build();
-			fail( "¸”s" );
+			fail( "å¤±æ•—" );
 		}
 		catch( IllegalArgumentException e ) {
 			assertTrue(true);

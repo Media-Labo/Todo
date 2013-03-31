@@ -6,22 +6,22 @@ import android.widget.TextView;
 
 public class EditActivityTest extends ActivityInstrumentationTestCase2<EditActivity> {
 
-	// ƒRƒ“ƒ|[ƒlƒ“ƒg–¼‚É‚ÍÚ“ª«c_‚ğ•t‰Á
+	// ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆåã«ã¯æ¥é ­è¾c_ã‚’ä»˜åŠ 
 	private TextView c_summaryLabel = null;
 	
-	// strings.xml‚Ìİ’è’l‚É‚ÍÚ“ª«s_‚ğ•t‰Á
+	// strings.xmlã®è¨­å®šå€¤ã«ã¯æ¥é ­è¾s_ã‚’ä»˜åŠ 
 	private String s_summaryLabel = null;
 	/**
-	 * ƒeƒXƒg‘ÎÛ‚ğw’è
+	 * ãƒ†ã‚¹ãƒˆå¯¾è±¡ã‚’æŒ‡å®š
 	 */
 	public EditActivityTest() {
-		// ƒeƒXƒg‘ÎÛ‚ÌƒpƒbƒP[ƒW‚ÆƒNƒ‰ƒX‚ğİ’è
+		// ãƒ†ã‚¹ãƒˆå¯¾è±¡ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¨ã‚¯ãƒ©ã‚¹ã‚’è¨­å®š
 		super(	"jp.co.media_labo.android.todo.activities",
 				EditActivity.class);
 	}
 
 	/**
-	 * ŠeƒeƒXƒgƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚é‘O‚ÉÀs‚³‚ê‚éƒƒ\ƒbƒh
+	 * å„ãƒ†ã‚¹ãƒˆãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹å‰ã«å®Ÿè¡Œã•ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
 	 */
 	@Override
 	protected void setUp() throws Exception {
@@ -29,7 +29,7 @@ public class EditActivityTest extends ActivityInstrumentationTestCase2<EditActiv
 		
 		Activity activity = this.getActivity();
 		
-		// ‚¢‚ë‚¢‚ë‚Èİ’è’l‚ğæ“¾
+		// ã„ã‚ã„ã‚ãªè¨­å®šå€¤ã‚’å–å¾—
 		this.c_summaryLabel 
 			= (TextView)activity.findViewById(
 					jp.co.media_labo.android.todo.R.id.summaryLabel );
